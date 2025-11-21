@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Lista - TuDespensa</title>
+    <link rel="stylesheet" href="../styles/landingStyles.css">
+    <link rel="stylesheet" href="../styles/regProductStyles.css">
+    <style>
+        .container { padding: 20px; text-align: center; }
+        .btn-grande {
+            background: #ff8c00; color: white; padding: 15px;
+            font-size: 1.2rem; border: none; border-radius: 10px; cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<header></header>
+
+<div class="container">
+    <h1>Confirmar Pedido</h1>
+    <p>Se generará un pedido con los productos de tu despensa.</p>
+    <br>
+    <h2 id="total">Total Estimado: $50.000</h2>
+    <br>
+    <button class="btn-grande" onclick="hacerPedido()">GENERAR PEDIDO</button>
+</div>
+
+<script>
+    async function hacerPedido() {
+        const pedido = { usuario: "Usuario Demo", total: 50000 };
+
+        try {
+            const res = await fetch('http://localhost:8080/api/pedidos', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(pedido)
+            });
+            if(res.ok) {
+                alert("✅ ¡Pedido Enviado!");
+                window.location.href = 'optionsPerUser.html';
+            } else { alert("Error"); }
+        } catch(e) { alert("Error de conexión"); }
+    }
+</script>
+</body>
+</html>
