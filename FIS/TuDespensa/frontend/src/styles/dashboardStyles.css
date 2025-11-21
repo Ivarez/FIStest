@@ -1,0 +1,126 @@
+/* Usa variables definidas en registerStyles.css */
+:root{
+  --brand:#64B5F6;
+  --cta:#FF9800;
+  --bg:#F5F5F5;
+  --card:#FFFFFF;
+  --muted:#6B7280;
+  --ink:#212121;
+
+  --shadow:0 8px 20px rgba(16,24,40,.12);
+  --shadow-strong:0 12px 28px rgba(16,24,40,.18);
+}
+
+/* Fondo tipo app */
+body{
+  background-image:url(../assets/Fondo_register.jpg);
+  background-size:cover;
+  background-position:center;
+}
+
+/* Header */
+.dash__header{
+  position:sticky; top:0; z-index:10;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 18px;
+  background:var(--brand);
+  box-shadow:var(--shadow);
+}
+.dash__brand{ display:flex; align-items:center; gap:10px; }
+.dash__logo{ height:42px; display:block; filter:drop-shadow(3px 5px 2px #00000058); }
+
+.dash__right{ display:flex; align-items:center; gap:12px; }
+.dash__hello{ color:#001223; font-weight:700; }
+.dash__logout{
+  background:#fff; color:#001223;
+  border:none; border-radius:12px; padding:10px 14px;
+  cursor:pointer; font-weight:700;
+  box-shadow:var(--shadow);
+  transition:transform .08s ease, filter .15s ease;
+}
+.dash__logout:hover{ transform:translateY(-1px); filter:brightness(1.03); }
+
+/* Main */
+.dash__main{
+  max-width:1200px; margin:22px auto; padding:0 16px 40px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:14px;
+}
+
+/* Filtros */
+.dash__filters{ margin-bottom:16px; }
+.filters__row{
+  display:grid;
+  grid-template-columns:1fr 1fr 1.2fr auto;
+  gap:12px;
+}
+.filters__row label{ display:flex; flex-direction:column; gap:6px; font-weight:600; color:#001223; }
+.filters__row select,
+.filters__row input{
+  height:44px; border-radius:12px; border:none; background:#E9EAEE; padding:0 12px;
+  outline:none;
+}
+.filters__row select:focus, .filters__row input:focus{
+  box-shadow:0 0 0 3px rgba(100,181,246,.5);
+  background:#EEF6FF;
+}
+.btn{
+  height:44px; padding:0 18px; border:none; border-radius:12px; cursor:pointer; font-weight:800;
+}
+.btn--primary{ background:var(--cta); color:#111; box-shadow:var(--shadow); }
+.btn--primary:hover{ filter:brightness(1.05); transform:translateY(-1px); }
+
+/* Chips / summary */
+.dash__summary{ margin:12px 0 10px; display:flex; align-items:center; gap:10px; }
+.chip{
+  background:#fff; border:1px solid #E5E7EB; color:#111;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 12px; border-radius:999px; font-weight:700;
+  box-shadow:var(--shadow);
+}
+
+/* Grid de productos */
+.grid{
+  display:grid;
+  gap:14px;
+  grid-template-columns:repeat(1, minmax(0,1fr));
+}
+@media (min-width:680px){
+  .grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+@media (min-width:980px){
+  .grid{ grid-template-columns:repeat(3, minmax(0,1fr)); }
+}
+.product{
+  background:#fff; border-radius:18px; box-shadow:var(--shadow);
+  padding:14px; display:flex; flex-direction:column; gap:8px;
+}
+.product__title{ font-weight:800; font-size:1rem; color:#111; }
+.product__meta{ color:var(--muted); font-size:.9rem; display:flex; gap:10px; flex-wrap:wrap; }
+.product__price{ font-weight:800; }
+.product__badge{
+  display:inline-flex; align-items:center; gap:6px; padding:6px 10px;
+  background:#EEF6FF; color:#0b3a6b; border-radius:999px; font-weight:700; font-size:.85rem;
+}
+.product__footer{ display:flex; align-items:center; justify-content:space-between; margin-top:6px; }
+
+/* Estados */
+.dash__empty{
+  text-align:center; color:var(--muted);
+}
+.loading{
+  opacity:.5; pointer-events:none;
+}
+
+/* Footer */
+.dash__footer{
+  margin-top:24px;
+  display:flex; justify-content:center;
+  padding:10px 0 24px;
+}
+.footer__logo2{ height:28px; }
