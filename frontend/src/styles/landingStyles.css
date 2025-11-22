@@ -1,0 +1,368 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+
+:root {
+    --headerColor: #64B5F6; /* Este color también se usa para botón*/
+    --mainColor: #F5F5F5;
+    --mainButtonColor: #FF9800;
+    --canceledButtonColor: #E57373;
+    --mainTextColor: #212121;
+    --darkblueText: #001223;
+    --blankColor: #D9D9D9; /* Color usado en opciones del landing y espacios del Log In y del Sign Up*/
+
+    font-size: 16px;
+}
+
+html, body {
+    height: 100%;
+}
+
+body{
+    box-sizing: border-box;
+    background-color: var(--mainColor);
+
+    /*Necesario para que el footer esté pegado al bottom*/
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ----------------HEADER SECTION------------------- */
+
+header{
+    height: 80px; /*Ajustar con media queries (MEJOR VALOR FIJO A DEPENDIENTE)*/
+    display: flex;
+    padding: 2px 18px;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    background-color: var(--headerColor);
+}
+
+.header__logo1-container{
+    display: flex;
+    align-items: center;
+}
+
+.header__logo1{
+    height: 100%;
+    width: clamp(140px, 22%, 230px); /*Asegurarse de que ocupe el contenedor*/
+    object-fit: cover;
+
+    filter: drop-shadow(3px 5px 2px #00000058);
+}
+
+.header__right-section{
+    display: flex;
+    flex-direction: row;
+}
+
+.header__profile-button{
+    background-color: var(--blankColor);
+    cursor: pointer; /*El cursor cambia a manito cuando paso por el profile*/
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    /*Centrar el icono*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /*Ayuda a que no se aplaste*/
+}
+
+.header__profile-icon{
+    width: 65%;
+    padding: 4px;
+}
+
+.header__user-menu{
+    background-color: #64b4f6bc;
+    backdrop-filter: blur(10px);
+    position: absolute;
+    padding: 13px;
+    right: 20px;
+    top: 86px;
+    border-radius: 12px;
+    /*display no se puede animar*/
+
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none; /*Hace que no se pueda clickear si no está visible*/
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* VISIBLE PARA CELULARES */
+
+.header__user-menu.show{
+
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.header__user-list{
+    list-style: none;
+}
+
+.header__user-option{
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 12px;
+
+    transition: background-color 0.1s cubic-bezier(.07,.35,.83,.67);
+}
+
+.header__user-option:active{
+    background-color: var(--mainColor);
+    border-radius: 12px;
+}
+
+.header__user-option a{
+    color: var(--darkblueText);
+    text-decoration: none;
+}
+
+.header__start-button{
+    font-size: 1rem;
+    font-weight: 600;
+    width: 190px;
+    height: 50px;
+    align-self: center;
+    margin: 0 20px 0 0;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--mainButtonColor);
+    color: var(--mainTextColor);
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, background-color 0.25s ease;
+    display: none;
+}
+
+/*------------HEADER QUERIES------------*/
+@media screen and (min-width: 600px) {
+    .header__start-button:hover{
+        /*Color que rodea el recuadro*/
+        filter: drop-shadow(0px 0px px var(--mainButtonColor)); 
+        /*Para que sobresalga el color del botón*/
+        background-color: #ffa215;
+        box-shadow: 1px 1px 12px #ffa215;
+
+    }
+
+    .header__profile-button{
+        outline: none;
+        transition: outline 0.1s;
+    }
+
+    .header__profile-button:hover{
+        outline: 4px solid var(--darkblueText);
+    }
+
+    .header__user-menu{
+        padding: 13px 20px;
+    }
+
+    .header__user-option{
+        padding: 10px 25px;
+        border-radius: 12px;
+        transition: background-color 0.1s;
+    }
+
+    .header__user-option:hover{
+        background-color: var(--mainColor);
+    }
+
+    .header__start-button{
+        display: block;
+    }
+}
+
+
+
+
+/* ----------------MAIN SECTION------------------- */
+
+main{
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+}
+
+h1{
+    padding: 65px 0 8px 0;
+}
+
+h3{
+    font-style: italic;
+    font-weight: 100;
+}
+
+.benefits__container{
+    margin: 80px 0 0 0;
+}
+
+h2{
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.benefits_item-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.benefits__item{
+    width: 340px;
+    background-color: var(--blankColor);
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.benefits__img-container{
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--mainColor);
+    padding: 7px;
+    border-radius: 50%;
+}
+
+.benefits__img-container img{
+    width: clamp(28px, 60%, 52px);
+}
+
+.benefits__item p{
+    margin: 0 0 0 8px;
+    font-weight: 100;
+}
+
+.benefits__start-button{
+    font-size: 1rem;
+    font-weight: 600;
+    width: 190px;
+    height: 50px;
+    align-self: center;
+    margin: 24px 0 70px 0;
+    border-radius: 12px;
+    border: none;
+    background-color: var(--mainButtonColor);
+    color: var(--mainTextColor);
+    cursor: pointer;
+    text-shadow: 0 4px 5px #0000006e;
+    transition: box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.benefits__start-button:hover{
+        filter: drop-shadow(0px 0px px var(--mainButtonColor)); 
+        /*Para que sobresalga el color del botón*/
+        background-color: #ffa215;
+        box-shadow: 1px 1px 12px #ffa215;
+}
+
+
+/*------------MAIN QUERIES------------*/
+@media screen and (min-width: 600px) {
+    .benefits_item-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        height: 300px;
+
+        margin: 27px 0;
+    }
+
+    .benefits__item{
+        width: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        padding: 10px;
+        margin: 0 14px;
+        height: 80%;
+
+        transition: transform 0.3s, box-shadow 0.4s;
+    }
+
+    .benefits__item:hover{
+        transform: perspective(1500px) rotateX(-12deg) rotateY(-10deg);
+
+        box-shadow: 3px 1px 10px var(--darkblueText);
+    }
+
+    .benefits__img-container{
+        width: 90px;
+        height: 90px;
+    }
+}
+
+
+
+
+
+/* ----------------FOOTER SECTION------------------- */
+
+footer{
+    background-color: var(--headerColor);
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__logo2-container{
+    margin: 15px auto 15px auto;
+    background-color: var(--mainColor);
+    border-radius: 14px;
+    padding: 0 20px;
+}
+
+.footer__options-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.footer__options{
+    /*Puede crecer*/
+    flex-grow: 1; 
+    /*Puede encogerse*/
+    flex-shrink: 1;
+    /*Intenta ocupar ese ancho*/
+    flex-basis: 200px;
+
+    text-align: center;
+    padding: 10px 0;
+}
+
+.footer__options a{
+    text-decoration: none;
+    color: var(--darkblueText);
+}
+
+.footer__options a:active{
+    color: var(--mainColor)
+}
+
+
+/*------------FOOTER QUERIES------------*/
+
+@media screen and (min-width: 600px) {
+    .footer__options-container{
+        margin-bottom: 10px;
+    }
+}

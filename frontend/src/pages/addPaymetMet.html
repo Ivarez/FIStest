@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Métodos de pago - TuDespensa</title>
+
+    <!-- Estilos globales -->
+    <link rel="stylesheet" href="../styles/landingStyles.css" />
+    <link rel="stylesheet" href="../styles/regProductStyles.css" />
+    <!-- Estilos específicos -->
+    <link rel="stylesheet" href="../styles/addPaymentStyles.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- =============== HEADER =============== -->
+    <header>
+      <div class="header__logo1-container">
+        <img
+          src="../../public/Logo1.png"
+          alt="Logo TuDespensa"
+          class="header__logo1"
+        />
+      </div>
+
+      <div class="header__right-section">
+        <button class="header__start-button" id="header__start-button">
+          Prueba TuDespensa
+        </button>
+
+        <button
+          id="open-profile-options"
+          class="header__profile-button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <img
+            src="../assets/user.png"
+            alt="Abrir menú de usuario"
+            class="header__profile-icon"
+          />
+        </button>
+
+        <nav class="header__user-menu" aria-label="Menú de usuario">
+          <ul class="header__user-list">
+            <li class="header__user-option">
+              <a href="optionsPerUser.html">Mi panel</a>
+            </li>
+            <li class="header__user-option">
+              <a href="logIn.html" id="logout-link">Cerrar sesión</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main class="rp-main payment-main">
+      <!-- Encabezado interno -->
+      <section class="rp-header payment-header">
+        <div class="payment-header-left">
+          <div class="rp-header-icon">💳</div>
+          <div>
+            <h1 class="rp-title">Métodos de pago</h1>
+            <p class="rp-subtitle">
+              Administra tus tarjetas, Nequi y formas de pago habituales.
+            </p>
+          </div>
+        </div>
+
+        <button type="button" class="payment__back-button" id="return-btn">
+          <img src="../assets/backButton.png" alt="Volver" />
+          <span>Volver al panel</span>
+        </button>
+      </section>
+
+      <section class="payment__content">
+        <!-- ====== Métodos existentes ====== -->
+        <section class="payment__existing">
+          <h2 class="payment__subtitle">Tus métodos guardados</h2>
+          <p class="payment__existing-text">
+            Selecciona tu favorito o elimina los que ya no uses.
+          </p>
+
+          <div id="existing-methods" class="payment__existing-list">
+            <!-- JS inserta aquí las cards -->
+          </div>
+
+          <p id="existing-message" class="payment__message"></p>
+        </section>
+
+        <hr class="payment__divider" />
+
+        <!-- ====== Crear nuevo método ====== -->
+        <section class="payment__new">
+          <h2 class="payment__subtitle">Agregar nuevo método de pago</h2>
+
+          <!-- Selector de tipo -->
+          <div class="payment__type-selector">
+            <button
+              type="button"
+              class="payment__type-btn selected"
+              data-type="Efectivo"
+            >
+              💵 Efectivo
+            </button>
+            <button
+              type="button"
+              class="payment__type-btn"
+              data-type="Tarjeta"
+            >
+              💳 Tarjeta
+            </button>
+            <button
+              type="button"
+              class="payment__type-btn"
+              data-type="Nequi"
+            >
+              📲 Nequi
+            </button>
+            <button
+              type="button"
+              class="payment__type-btn"
+              data-type="Transferencia"
+            >
+              🏦 Transferencia
+            </button>
+          </div>
+
+          <!-- Formulario dinámico -->
+          <div class="payment__form">
+            <!-- Alias (se usa para todos menos efectivo si quieres) -->
+            <div class="payment__field">
+              <label for="new-alias">Nombre del método</label>
+              <input
+                type="text"
+                id="new-alias"
+                class="payment__input"
+                placeholder="Ej: Efectivo casa, Nequi personal, Visa principal"
+              />
+            </div>
+
+            <!-- Campos de tarjeta -->
+            <div class="payment__fields-group" data-for="Tarjeta">
+              <div class="payment__field">
+                <label for="new-card-holder">Nombre del titular</label>
+                <input
+                  type="text"
+                  id="new-card-holder"
+                  class="payment__input"
+                  placeholder="Tal como aparece en la tarjeta"
+                />
+              </div>
+
+              <div class="payment__field">
+                <label for="new-card-number">Número de tarjeta</label>
+                <input
+                  type="text"
+                  id="new-card-number"
+                  class="payment__input"
+                  placeholder="0000 0000 0000 0000"
+                  maxlength="19"
+                />
+              </div>
+
+              <div class="payment__field payment__field-inline">
+                <div>
+                  <label for="new-card-expiry">Fecha de vencimiento</label>
+                  <input
+                    type="text"
+                    id="new-card-expiry"
+                    class="payment__input"
+                    placeholder="MM/AA"
+                    maxlength="5"
+                  />
+                </div>
+                <div>
+                  <label for="new-card-cvv">CVV</label>
+                  <input
+                    type="password"
+                    id="new-card-cvv"
+                    class="payment__input"
+                    placeholder="3 o 4 dígitos"
+                    maxlength="4"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Campos de Nequi / Transferencia -->
+            <div class="payment__fields-group" data-for="Nequi">
+              <div class="payment__field">
+                <label for="new-transfer-number-nequi"
+                  >Número de Nequi</label
+                >
+                <input
+                  type="text"
+                  id="new-transfer-number-nequi"
+                  class="payment__input"
+                  placeholder="Número de celular asociado a Nequi"
+                />
+              </div>
+            </div>
+
+            <div class="payment__fields-group" data-for="Transferencia">
+              <div class="payment__field">
+                <label for="new-transfer-number"
+                  >Número de cuenta / Daviplata</label
+                >
+                <input
+                  type="text"
+                  id="new-transfer-number"
+                  class="payment__input"
+                  placeholder="Cuenta o número de Daviplata"
+                />
+              </div>
+            </div>
+
+            <!-- Checkbox preferido -->
+            <div class="payment__field payment__field-row">
+              <input type="checkbox" id="new-preferred" />
+              <label for="new-preferred">Marcar como método preferido</label>
+            </div>
+
+            <!-- Botón guardar -->
+            <div class="payment__actions">
+              <button type="button" class="payment__save-btn" id="save-method">
+                Guardar método de pago
+              </button>
+              <p id="payment-message" class="payment__message"></p>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <!-- =============== SCRIPTS =============== -->
+    <script src="../scripts/landingScript.js"></script>
+    <script src="../scripts/addPaymentScript.js"></script>
+  </body>
+</html>
