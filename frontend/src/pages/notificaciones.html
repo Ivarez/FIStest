@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notificaciones</title>
+  <link rel="stylesheet" href="../styles/landingStyles.css">
+  <link rel="stylesheet" href="../styles/regProductStyles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    .notif-container { max-width: 600px; margin: 30px auto; padding: 0 20px; }
+    .notif-card {
+      background: white; padding: 20px; margin-bottom: 15px;
+      border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border-left: 6px solid #ccc; display: flex; justify-content: space-between; align-items: center;
+    }
+    .notif-card.EXITO { border-left-color: #2ecc71; } /* Verde */
+    .notif-card.ALERTA { border-left-color: #e74c3c; } /* Rojo */
+    .notif-content h4 { margin: 0 0 5px 0; font-size: 1rem; color: #333; }
+    .notif-content p { margin: 0; font-size: 0.9rem; color: #666; }
+    .notif-date { font-size: 0.75rem; color: #aaa; margin-left: 15px; min-width: 80px; text-align: right; }
+    .empty-state { text-align: center; color: #888; margin-top: 50px; }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header__logo1-container"><img src="../../public/Logo1.png" class="header__logo1"></div>
+  <div class="header__right-section">
+    <a href="optionsPerUser.html" style="text-decoration:none; color:black; font-weight:600; display:flex; align-items:center">
+      <img src="../assets/backButton.png" style="height:20px; margin-right:5px"> Volver
+    </a>
+  </div>
+</header>
+
+<main class="rp-main">
+  <section class="rp-header">
+    <h1 class="rp-title">🔔 Tus Notificaciones</h1>
+  </section>
+
+  <div id="lista-notificaciones" class="notif-container">
+  </div>
+
+  <div style="text-align:center; margin-top:20px">
+    <button onclick="borrarNotificaciones()" style="background:none; border:none; color:#FF8C00; cursor:pointer; font-weight:bold">Limpiar Bandeja</button>
+  </div>
+</main>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const contenedor = document.getElementById("lista-notificaciones");
+    // Leer del almacenamiento local
+    const notifs = JSON.parse(localStorage.getItem("mis_notificaciones") || "[]");
+
+    if (notifs.length === 0) {
+      contenedor.innerHTML = `
+                    <div class="empty-state">
+                        <h3>No tienes notificaciones nuevas</h3>
+                        <p>Tus alertas de pedidos aparecerán aquí.</p>
+                    </div>`;
+      return;
+    }
+
+    contenedor.innerHTML = notifs.map(n => `
+                <div class="notif-card ${n.tipo}">
+                    <div class="notif-content">
+                        <h4>${n.tipo === 'EXITO' ? 'Pedido Exitoso' : 'Información'}</h4>
+                        <p>${n.mensaje}</p>
+                    </div>
+                    <div class="notif-date">${n.fecha.split(',')[0]}</div>
+                </div>
+            `).join('');
+  });
+
+  function borrarNotificaciones() {
+    if(confirm("¿Borrar todas las notificaciones?")) {
+      localStorage.removeItem("mis_notificaciones");
+      window.location.reload();
+    }
+  }
+</script>
+</body>
+</html>

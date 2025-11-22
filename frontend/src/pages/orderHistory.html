@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Historial de compras - TuDespensa</title>
+
+    <!-- Estilos globales (header, fondo, etc.) -->
+    <link rel="stylesheet" href="../styles/landingStyles.css" />
+    <!-- Estilos de panel blanco y cards -->
+    <link rel="stylesheet" href="../styles/regProductStyles.css" />
+    <!-- Estilos específicos del historial -->
+    <link rel="stylesheet" href="../styles/orderHistoryStyles.css" />
+
+    <!-- Tipografía -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- =============== HEADER (igual que otras pantallas) =============== -->
+    <header>
+      <div class="header__logo1-container">
+        <img
+          src="../../public/Logo1.png"
+          alt="Logo TuDespensa"
+          class="header__logo1"
+        />
+      </div>
+
+      <div class="header__right-section">
+        <button class="header__start-button" id="header__start-button">
+          Prueba TuDespensa
+        </button>
+
+        <button
+          id="open-profile-options"
+          class="header__profile-button"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <img
+            src="../assets/user.png"
+            alt="Abrir menú de usuario"
+            class="header__profile-icon"
+          />
+        </button>
+
+        <nav class="header__user-menu" aria-label="Menú de usuario">
+          <ul class="header__user-list">
+            <li class="header__user-option">
+              <a href="optionsPerUser.html">Mi panel</a>
+            </li>
+            <li class="header__user-option">
+              <a href="logIn.html" id="logout-link">Cerrar sesión</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ================= MAIN ================= -->
+    <main class="rp-main history-main">
+      <!-- Encabezado interno -->
+      <section class="rp-header history-header">
+        <div class="history-header-left">
+          <div class="rp-header-icon">🛒</div>
+          <div>
+            <h1 class="rp-title">Historial de compras</h1>
+            <p class="rp-subtitle">
+              Revisa tus pedidos anteriores y sus detalles.
+            </p>
+          </div>
+        </div>
+
+        <!-- Botón volver al panel de opciones -->
+        <button type="button" class="history__back-button" id="return-btn">
+          <img src="../assets/backButton.png" alt="Volver" />
+          <span>Volver al panel</span>
+        </button>
+      </section>
+
+      <!-- Contenido del historial -->
+      <section class="history__content">
+        <div class="history__list-wrapper">
+          <h2 class="history__subtitle">Tus pedidos</h2>
+
+          <ul class="history__list" id="history-list">
+            <!-- JS inserta aquí los pedidos -->
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== MODAL DETALLE DE PEDIDO ===== -->
+    <section class="order__summary-container" id="order-summary">
+      <div class="order__summary-card">
+        <!-- Botón X para cerrar -->
+        <button
+          type="button"
+          class="order__summary-close"
+          id="order-summary-close"
+          aria-label="Cerrar detalle"
+        >
+          ×
+        </button>
+
+        <h2 class="order__summary-title">Detalle del pedido</h2>
+
+        <div class="order__summary-header">
+          <span>Producto</span>
+          <span>Cantidad</span>
+          <span>Unidad</span>
+          <span>Costo</span>
+        </div>
+
+        <div class="order__summary-body" id="order-summary-body"></div>
+
+        <div class="order__summary-supplier">
+          <span class="order__supplier-tag">Proveedor</span>
+          <span id="supplier-name" class="order__supplier-name"></span>
+        </div>
+
+        <div class="order__summary-total">
+          <span>Total estimado</span>
+          <strong id="order-total">$0</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Capa oscura para el modal -->
+    <div class="dark__layer"></div>
+
+    <!-- =============== SCRIPTS =============== -->
+    <!-- Header (menú usuario, botón naranja, etc.) -->
+    <script src="../scripts/landingScript.js"></script>
+    <!-- Lógica del historial -->
+    <script src="../scripts/orderHistoryScript.js"></script>
+  </body>
+</html>
